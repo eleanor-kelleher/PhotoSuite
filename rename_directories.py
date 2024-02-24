@@ -7,14 +7,15 @@ def get_folder_number(dir: str, base_dir_path: str):
 
 
 def get_folder_title(dir: str, base_dir_path: str):
-    return dir.split(f"{str(base_dir_path)}\\")[1].split(" ", 1)[1]
+    x = dir.split(f"{str(base_dir_path)}\\")[1].split(" ", 1)[1].split(" ", 1)[1]
+    return x
 
 
 def rename_file(original_path: str, new_name: str, num: int):
     if not os.path.isdir(original_path):
         file_type = original_path.rsplit('.', 1)[1]
         filepath = original_path.rsplit('\\', 1)
-        if "ini" not in filepath[1]:
+        if "ini" not in filepath[1] and "pdf" not in filepath[1] and new_name not in original_path:
             new_filename = f"{new_name}_{str(num)}.{file_type}"
             if filepath[1] != new_filename:
                 os.rename(original_path, f"{filepath[0]}\\{new_filename}")
@@ -29,7 +30,7 @@ if __name__ == '__main__':
             folder_number = get_folder_number(dir, base_dir_path)
             if folder_number.isdigit() and int(folder_number) > 0:
                 folder_title = get_folder_title(dir, base_dir_path)
-                print(f"\nIn {dir}, renaming:")
+                print(f"Checking in {dir}:")
                 for i, filename in enumerate(os.listdir(dir)):
                     try:
                         rename_file(f"{dir}\{filename}", "IBB_" + folder_title.replace(" ", ""), i + 1)
