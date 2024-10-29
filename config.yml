@@ -1,2 +1,8 @@
 sd_card_path: 'F:\DCIM'
-photographs_path: 'D:\Pictures\Photographs'
+# photographs_path: 'D:\Pictures\Photographs'
+photo_dir_path:
+  - 'D:'
+  - 'Pictures'
+  - 'Photographs'
+photo_dir_year: '2024'
+photo_dir_date_name: "2024-10-19 Bull Island and Griffith Park"
